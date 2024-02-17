@@ -59,5 +59,17 @@ export function getData(url) {
 const data = await getData("/path");
 // data is typed as any
 
+// In this case the type is simple so I would type it manually
+// But some inferred types are more complex
+/** @type {Post} */
+const dataExplicit = await getData("/path");
+
+// Casting the method kinda works (typed as Post) but requires cast and typeof
+const dataCast = await /** @type {typeof getData<Post>} */ (getData)("/path");
+
+// I would like to use something like
+const templateBefore = await /** @template {Post} */ getData("/path");
+const templateBetween = await getData(/** @template {Post} */ "/path");
+
 // Hide no-unused warnings
 console.log(seeCommentParsing, data);

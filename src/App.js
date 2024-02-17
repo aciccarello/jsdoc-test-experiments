@@ -17,9 +17,11 @@ import { getPost } from "./api";
 
 // I also tried importing the whole file
 /** @typedef {import('./api')} Api */
+/** @typedef {typeof import('./api')} ApiTypeof */
 
 // But that doesn't seem to work
 /** @type {Partial<Api.Post>} */ const usingType = {};
+/** @type {Partial<ApiTypeof.Post>} */ const usingTypeof = {};
 
 function App() {
   // Generics are kinda awkward. Here I have to pass undefined and cast to type postId
